@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ashgreyfog — Links</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir: #050507;
+            --bone: #ece7dc;
+            --cobalt: #1d4ed8;
+            --cobalt-soft: #2a5cf0;
+            --blood: #c01218;
+        }
+        html, body { background: var(--noir); }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--bone);
+            background:
+                radial-gradient(ellipse at top, rgba(29,78,216,0.10), transparent 55%),
+                radial-gradient(ellipse at bottom, rgba(192,18,24,0.05), transparent 60%),
+                var(--noir);
+            min-height: 100vh;
+        }
+        .serif { font-family: 'Cormorant Garamond', serif; font-feature-settings: "liga","dlig"; }
+
+        /* faint clock-face watermark behind the name */
+        .clock-watermark {
+            position: absolute;
+            top: -40px; left: 50%;
+            transform: translateX(-50%);
+            width: 360px; height: 360px;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* film-grain vignette */
+        .vignette {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.7) 100%);
+            z-index: 50;
+        }
+
+        /* the red slash beneath the name */
+        .red-slash {
+            display: block;
+            width: 72px; height: 2px;
+            background: var(--blood);
+            margin: 14px auto 0;
+            transform: skewX(-18deg);
+            box-shadow: 0 0 14px rgba(192,18,24,0.55);
+        }
+
+        .link-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(29,78,216,0.18), rgba(29,78,216,0.08));
+            border: 1px solid rgba(236,231,220,0.18);
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+            overflow: hidden;
+        }
+        .link-card::before {
+            content: "";
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--blood);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+        .link-card:hover {
+            border-color: rgba(236,231,220,0.55);
+            background: linear-gradient(180deg, rgba(29,78,216,0.32), rgba(29,78,216,0.16));
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px -18px rgba(29,78,216,0.6), 0 0 0 1px rgba(236,231,220,0.08);
+        }
+        .link-card:hover::before { transform: scaleY(1); }
+        .link-card .arrow {
+            opacity: 0; transform: translateX(-6px);
+            transition: all 0.25s ease;
+            color: var(--blood);
+        }
+        .link-card:hover .arrow { opacity: 1; transform: translateX(0); }
+
+        .avatar-frame {
+            position: relative;
+            padding: 3px;
+            background: linear-gradient(140deg, var(--cobalt-soft) 0%, var(--bone) 45%, var(--blood) 100%);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col items-center py-16 px-4 relative">
+
+    <div class="vignette"></div>
+
+    <div class="w-full max-w-md flex flex-col items-center relative z-10">
+
+        <!-- Avatar -->
+        <div class="avatar-frame mb-6">
+            <div class="h-28 w-28 rounded-full overflow-hidden bg-black">
+                <img src="https://www.royalroadcdn.com/public/avatars/avatar-901818-AABALTrDpBg.png" alt="Profile" class="h-full w-full object-cover">
+            </div>
+        </div>
+
+        <!-- Name block with clock watermark -->
+        <div class="relative w-full flex flex-col items-center mb-6">
+            <svg class="clock-watermark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="96" stroke="#ece7dc" stroke-width="0.6"/>
+                <circle cx="100" cy="100" r="80" stroke="#ece7dc" stroke-width="0.4"/>
+                <g font-family="Cormorant Garamond, serif" font-size="11" fill="#ece7dc" text-anchor="middle">
+                    <text x="100" y="20">XII</text>
+                    <text x="148" y="33">I</text>
+                    <text x="178" y="62">II</text>
+                    <text x="188" y="104">III</text>
+                    <text x="178" y="146">IV</text>
+                    <text x="148" y="175">V</text>
+                    <text x="100" y="188">VI</text>
+                    <text x="52" y="175">VII</text>
+                    <text x="22" y="146">VIII</text>
+                    <text x="12" y="104">IX</text>
+                    <text x="22" y="62">X</text>
+                    <text x="52" y="33">XI</text>
+                </g>
+                <line x1="100" y1="100" x2="100" y2="40" stroke="#ece7dc" stroke-width="0.8"/>
+                <line x1="100" y1="100" x2="140" y2="100" stroke="#ece7dc" stroke-width="0.6"/>
+            </svg>
+
+            <h1 class="serif text-5xl font-semibold tracking-tight text-center relative z-10" style="color: var(--bone);">
+                ashgreyfog
+            </h1>
+            <span class="red-slash"></span>
+            <p class="text-center text-[13px] mt-5 leading-relaxed px-6 text-zinc-400 font-light tracking-wide">
+                Author of Hunting Midnight<br>
+                <!-- <span class="serif text-base text-zinc-300">A centralized index of where to find me.</span> -->
+            </p>
+        </div>
+
+        <!-- Links -->
+        <div class="w-full space-y-3">
+
+            <a href="https://www.royalroad.com/fiction/175817/hunting-midnight" class="link-card group flex items-center justify-between w-full py-4 pl-6 pr-5 rounded-md">
+                <span class="text-sm tracking-[0.18em] uppercase font-medium" style="color: var(--bone);">Read Hunting Midnight on Royal Road</span>
+                <span class="arrow text-lg">→</span>
+            </a>
+
+            <a href="https://rrwritersguild.com/shoutouts/2YZJJB" class="link-card group flex items-center justify-between w-full py-4 pl-6 pr-5 rounded-md">
+                <span class="text-sm tracking-[0.18em] uppercase font-medium" style="color: var(--bone);">Hunting Midnight Shout Swap Calendar</span>
+                <span class="arrow text-lg">→</span>
+            </a>
+
+            <a href="https://www.patreon.com/cw/AshGreyFog" class="link-card group flex items-center justify-between w-full py-4 pl-6 pr-5 rounded-md">
+                <span class="text-sm tracking-[0.18em] uppercase font-medium" style="color: var(--bone);">Support me on Patreon</span>
+                <span class="arrow text-lg">→</span>
+            </a>
+
+            <a href="https://discord.com/users/456255544450220032" class="link-card group flex items-center justify-between w-full py-4 pl-6 pr-5 rounded-md">
+                <span class="text-sm tracking-[0.18em] uppercase font-medium" style="color: var(--bone);">Find me on Discord (jfuji)</span>
+                <span class="arrow text-lg">→</span>
+            </a>
+
+            <!--
+            <a href="mailto:hello@example.com" class="link-card group flex items-center justify-between w-full py-4 pl-6 pr-5 rounded-md">
+                <span class="text-sm tracking-[0.18em] uppercase font-medium" style="color: var(--bone);">Contact</span>
+                <span class="arrow text-lg">→</span>
+            </a> 
+            -->
+
+        </div>
+
+        <!-- Footer mark -->
+        <div class="mt-12 flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase text-zinc-600">
+            <span class="h-px w-8 bg-zinc-700"></span>
+            <span class="serif italic text-xs normal-case tracking-wider text-zinc-500">— "hesitation is death" —</span>
+            <span class="h-px w-8 bg-zinc-700"></span>
+        </div>
+
+    </div>
+
+</body>
+</html>
